@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <header>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="406.0" prefWidth="480.0">
+         <children>
+            <VBox prefHeight="406.0" prefWidth="480.0">
+               <children>
+                  <TextArea prefHeight="381.0" prefWidth="480.0" text="Comment jouer au jeu du Pendu :&#10;&#10;Dans un premier temps il faut désigner&#10;un joueur qui devra deviner le mot. Pour expliquer plus facilement nous&#10;allons partir sur un exemple. Il y a deux joueurs, Rémi et Margaux.&#10;&#10;Rémi pense à un mot et Margaux devra le&#10;deviner. Pour ce faire, Rémi dessine la potence et place en dessous&#10;autant de tirets qu’il y a de lettres dans le mot.&#10;&#10; Margaux annonce une lettre. La lettre fait-elle partie du mot à deviner ?&#10;&#10;    Si oui, Rémi inscrit la lettre à sa place, sur le tiret correspondant, et autant de fois &#10;que la lettre apparait dans le mot.&#10;    Si non, Rémi dessine le premier trait du pendu.&#10;&#10;Le jeu continue jusqu’au moment où l’un des joueurs remporte la partie. &#10;C’est-à-dire :&#10;&#10;    Margaux remporte la partie en découvrant toutes les lettres du mot.&#10;    Rémi gagne la partie en dessinant tous les trais du pendu.&#10;A savoir :&#10;&#10;Le nombre de coups dans une partie dépend du nombre de traits qu’il faut &#10;pour réaliser le dessin du pendu. Il est donc possible d’augmenter le nombre de &#10;chance en dessinant également la potence, et pas seulement le pendu, durant la &#10;partie. Cela facilite le jeu et permet au joueur qui cherche d’avoir plus de chances&#10;de trouver le mot.&#10;&#10;&#10;" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Support: https://www.sncf-connect.com/" textAlignment="CENTER" wrappingWidth="480.283203125" />
+               </children>
+            </VBox>
+         </children></AnchorPane>
+    </header>
+    <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
+    </content>
+    <expandableContent>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
+    </expandableContent>
+   <buttonTypes>
+      <ButtonType fx:constant="CLOSE" />
+   </buttonTypes>
+</DialogPane>
