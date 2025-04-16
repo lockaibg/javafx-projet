@@ -2,11 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -19,23 +17,20 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="57.0" minHeight="34.0" prefHeight="56.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="175.0" minHeight="106.0" prefHeight="107.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="237.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="175.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="172.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="237.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+      <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" GridPane.rowIndex="1">
          <children>
-            <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb570" height="40.0" stroke="BLACK" strokeType="INSIDE" width="250.0" StackPane.alignment="CENTER" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txt" text="Voici le mot à deviner:" />
-               </children>
-            </StackPane>
-            <Pane />
-            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb570" height="40.0" stroke="BLACK" strokeType="INSIDE" width="250.0" StackPane.alignment="CENTER" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txt" text="Voici le mot à deviner:" />
+            <HBox fx:id="outilsContainer" prefHeight="54.0" prefWidth="600.0" />
          </children>
-      </HBox>
-      <VBox alignment="CENTER" prefHeight="209.0" prefWidth="600.0" GridPane.rowIndex="2">
+      </StackPane>
+         <HBox fx:id="motContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="2" />
+      <VBox alignment="CENTER" prefHeight="209.0" prefWidth="600.0" GridPane.rowIndex="3">
          <children>
             <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
@@ -190,6 +185,5 @@
             </HBox>
          </children>
       </VBox>
-      <HBox fx:id="outilsContainer" prefHeight="54.0" prefWidth="600.0" />
    </children>
 </GridPane>

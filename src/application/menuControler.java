@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,11 @@ public class menuControler {
 	
 	private double size;
 	private boolean sombre;
+	
+	@FXML
+	private GridPane root;
+	@FXML
+	private TextField enter_name;
 	
 	public void updateStyleClass(Parent root, String cssClass, double size) {
 	    for (Node node : root.lookupAll(cssClass)) {
@@ -62,10 +68,7 @@ public class menuControler {
 		}
 	}
 	
-	@FXML
-	private GridPane root;
-	@FXML
-	private TextField enter_name;
+	
 	
 	@FXML
 	public void play(ActionEvent event) throws IOException { 
@@ -140,5 +143,10 @@ public class menuControler {
         dialog.setTitle("Parametre");
         dialog.setDialogPane(dialogPane);
         dialog.showAndWait();
+	}
+	
+	@FXML
+	public void quitter(ActionEvent event) {
+		Platform.exit();
 	}
 }

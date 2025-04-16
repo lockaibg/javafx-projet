@@ -53,7 +53,7 @@
             <Font size="38.0" />
          </font>
       </Text>
-      <Button minHeight="30.0" minWidth="80.0" mnemonicParsing="false" text="Quitter" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+      <Button minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#quitter" text="Quitter" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5">
          <styleClass>
             <String fx:value="txt" />
             <String fx:value="but" />

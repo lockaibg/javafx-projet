@@ -32,8 +32,14 @@ public class OutilsController {
 	}
 	public void updateStyleClass(Parent root, String cssClass, double size) {
 	    for (Node node : root.lookupAll(cssClass)) {
-	    	String currentStyle = node.getStyle();
-	        node.setStyle(currentStyle + "-fx-font-size: " + size + "px;");
+	    	if(cssClass != "lettre") {
+	    		String currentStyle = node.getStyle();
+	    		node.setStyle(currentStyle + "-fx-font-size: " + size + "px;");
+	    	}
+	    	else {
+	    		String currentStyle = node.getStyle();
+	    		node.setStyle(currentStyle + "-fx-font-size: " + size*3 + "px;");
+	    	}
 	    }
 	}
 	public void updateStyleClass(Parent root, String cssClass, String color, String type) {

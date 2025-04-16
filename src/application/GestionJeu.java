@@ -39,7 +39,7 @@ public class GestionJeu {
 	///////////////////////////////////////////////////////////////////////////////////////////////
     public GestionJeu(String nomDico) throws IOException{
     	this.nomJoueur = "";
-    	this.nbMaxErreurs = 4;
+    	this.nbMaxErreurs = 8;
     	this.nbErreurs = 0;
     	this.nbLettresTrouvees = 0;
     	lettresDejaDonnees = new String();
