@@ -9,12 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 
@@ -96,13 +98,23 @@ public class jeuControler {
 	public void verifierVictoireDefaite() throws IOException {
 		if(jeu.getNbLettresTrouvees() == jeu.getMotMystere().length()) {
 			FXMLLoader victoire = new FXMLLoader(getClass().getResource("victoire.fxml"));
+			VictoireController monControleur = new VictoireController(this.sombre, this.size);
+			victoire.setController(monControleur);
 			Parent newRoot = victoire.load();
-			root.getScene().setRoot(newRoot);
+			Scene scene = new Scene(newRoot,600,400);
+			scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+			Stage currentStage = (Stage) root.getScene().getWindow();
+			currentStage.setScene(scene);
 		}
 		else if(jeu.getNbErreurs() == jeu.getNbMaxErreurs()) {
-			FXMLLoader defaite = new FXMLLoader(getClass().getResource("defaite.fxml"));
-	        Parent newRoot = defaite.load();
-	        root.getScene().setRoot(newRoot);
+			FXMLLoader victoire = new FXMLLoader(getClass().getResource("defaite.fxml"));
+			VictoireController monControleur = new VictoireController(this.sombre, this.size);
+			victoire.setController(monControleur);
+			Parent newRoot = victoire.load();
+			Scene scene = new Scene(newRoot,600,400);
+			scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+			Stage currentStage = (Stage) root.getScene().getWindow();
+			currentStage.setScene(scene);
 		}
 	}
 	

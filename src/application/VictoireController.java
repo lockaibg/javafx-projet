@@ -20,13 +20,13 @@ public class VictoireController {
 	
 	private OutilsController outilsController;
 	private boolean sombre;
-	private int size;
+	private double size;
 	
 	
 	public VictoireController() {
 	}
 	
-	public VictoireController(boolean sombre, int size){
+	public VictoireController(boolean sombre, double size){
 		this.sombre = sombre;
 		this.size = size;
 	}
