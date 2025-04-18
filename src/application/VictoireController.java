@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
@@ -14,15 +15,18 @@ public class VictoireController {
 	private HBox outilsContainer;
 	@FXML
 	private GridPane root;
-	
+	@FXML
+	private Button rejouer;
 	
 	private OutilsController outilsController;
 	private boolean sombre;
 	private int size;
 	
 	
+	public VictoireController() {
+	}
 	
-	VictoireController(boolean sombre, int size){
+	public VictoireController(boolean sombre, int size){
 		this.sombre = sombre;
 		this.size = size;
 	}
@@ -33,5 +37,14 @@ public class VictoireController {
         outilsController = loader.getController();
 		outilsController.initStyles(sombre, size, root);
         outilsContainer.getChildren().add(includedRoot);
+	}
+	
+	@FXML
+	private void replay() throws IOException {
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("jeu.fxml"));
+	    jeuControler jeuCtrl = new jeuControler(size, sombre);
+	    loader.setController(jeuCtrl);
+	    Parent root = loader.load();
+	    outilsContainer.getScene().setRoot(root);
 	}
 }

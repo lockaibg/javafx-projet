@@ -93,12 +93,16 @@ public class jeuControler {
 		verifierVictoireDefaite();
 	}
 	
-	public void verifierVictoireDefaite() {
+	public void verifierVictoireDefaite() throws IOException {
 		if(jeu.getNbLettresTrouvees() == jeu.getMotMystere().length()) {
-			Platform.exit();
+			FXMLLoader victoire = new FXMLLoader(getClass().getResource("victoire.fxml"));
+			Parent newRoot = victoire.load();
+			root.getScene().setRoot(newRoot);
 		}
 		else if(jeu.getNbErreurs() == jeu.getNbMaxErreurs()) {
-			Platform.exit();
+			FXMLLoader defaite = new FXMLLoader(getClass().getResource("defaite.fxml"));
+	        Parent newRoot = defaite.load();
+	        root.getScene().setRoot(newRoot);
 		}
 	}
 	
