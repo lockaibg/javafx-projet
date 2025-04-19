@@ -2,12 +2,16 @@ package application;
 
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class VictoireController {
 	
@@ -40,11 +44,24 @@ public class VictoireController {
 	}
 	
 	@FXML
-	private void replay() throws IOException {
-	    FXMLLoader loader = new FXMLLoader(getClass().getResource("jeu.fxml"));
-	    jeuControler jeuCtrl = new jeuControler(size, sombre);
-	    loader.setController(jeuCtrl);
-	    Parent root = loader.load();
-	    outilsContainer.getScene().setRoot(root);
+	private void replay(ActionEvent event) {
+		try {
+			FXMLLoader loader;
+			if(this.sombre) {
+				loader = new FXMLLoader(getClass().getResource("jeu_sombre.fxml"));
+			}
+			else {
+				loader = new FXMLLoader(getClass().getResource("jeu.fxml"));
+			}
+			jeuControler monControleur = new jeuControler(this.size, this.sombre);
+			loader.setController(monControleur);
+			Parent root = loader.load();
+			Scene scene = new Scene(root,600,400);
+			scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			currentStage.setScene(scene);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

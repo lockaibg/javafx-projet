@@ -70,7 +70,7 @@
             <Image url="@../../images/victoire.png" />
          </image>
       </ImageView>
-      <Button mnemonicParsing="false" prefHeight="103.0" prefWidth="466.0" text="Rejouer" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Button mnemonicParsing="false" onAction="#replay" prefHeight="103.0" prefWidth="466.0" text="Rejouer" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
             <Font size="47.0" />
          </font>
