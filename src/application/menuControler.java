@@ -13,8 +13,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
@@ -23,6 +23,7 @@ public class menuControler {
 	
 	private double size;
 	private boolean sombre;
+	private String name;
 	
 	@FXML
 	private GridPane root;
@@ -66,6 +67,10 @@ public class menuControler {
     		updateStyleClass(root, ".but", "4f4f4f", "BACKGROUND");
     		updateStyleClass(root, ".txt", "dfdfdf", "BODY");
 		}
+		else {
+			updateStyleClass(root, ".but", "FFF2CC", "BACKGROUND");
+    		updateStyleClass(root, ".txt", "000000", "BODY");
+		}
 	}
 	
 	
@@ -80,11 +85,11 @@ public class menuControler {
 			else {
 				loader = new FXMLLoader(getClass().getResource("jeu.fxml"));
 			}
-			jeuControler monControleur = new jeuControler(this.size, this.sombre);
+			jeuControler monControleur = new jeuControler(this.size, this.sombre, this.name);
 			loader.setController(monControleur);
 			Parent root = loader.load();
 			Scene scene = new Scene(root,600,400);
-			scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			currentStage.setScene(scene);
 		} catch(Exception e) {
@@ -123,7 +128,7 @@ public class menuControler {
             		this.sombre = true;
             	} else if(this.sombre) {
             		root.setStyle("-fx-background-color: #FFFAED;");
-            		updateStyleClass(root, ".but", "ebebeb", "BACKGROUND");
+            		updateStyleClass(root, ".but", "FFF2CC", "BACKGROUND");
             		updateStyleClass(root, ".txt", "000000", "BODY");
             		this.sombre = false;
             	}
@@ -148,5 +153,12 @@ public class menuControler {
 	@FXML
 	public void quitter(ActionEvent event) {
 		Platform.exit();
+	}
+	
+	@FXML
+	public void updateName(KeyEvent event) {
+		TextField source = (TextField) event.getSource();
+		this.name = source.getText();
+		System.out.println(this.name);
 	}
 }

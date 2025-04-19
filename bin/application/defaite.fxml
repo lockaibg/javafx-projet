@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -12,8 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFAED;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFAED;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
       <ColumnConstraints maxWidth="120.0" minWidth="67.0" prefWidth="67.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="470.0" minWidth="10.0" prefWidth="470.0" />
@@ -57,25 +58,19 @@
       </VBox>
       <StackPane prefHeight="117.0" prefWidth="346.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" stroke="BLACK" strokeType="INSIDE" width="343.0" />
-            <TextArea prefHeight="103.0" prefWidth="466.0" text="Dommage ! Rejouer ?">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </TextArea>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff2cc" height="86.0" stroke="BLACK" strokeType="INSIDE" styleClass="rec" width="468.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txt" text="Dommage ! Rejouer ?" />
          </children>
       </StackPane>
-      <ImageView fitHeight="166.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-         <image>
-            <Image url="@../../images/defaite.png" />
-         </image>
-      </ImageView>
       <Button mnemonicParsing="false" onAction="#replay" prefHeight="103.0" prefWidth="466.0" text="Rejouer" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
             <Font size="47.0" />
          </font>
+         <styleClass>
+            <String fx:value="txt" />
+            <String fx:value="but" />
+         </styleClass>
       </Button>
-      <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
       <VBox prefHeight="375.0" prefWidth="132.0" spacing="10.0" GridPane.rowIndex="1" GridPane.rowSpan="3">
          <children>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
@@ -106,5 +101,13 @@
          </children>
       </VBox>
       <HBox fx:id="outilsContainer" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" />
+      <HBox fx:id="center" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <children>
+            <ImageView fitHeight="173.0" fitWidth="274.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/defaite.png" />
+               </image>
+            </ImageView>
+         </children></HBox>
    </children>
 </GridPane>

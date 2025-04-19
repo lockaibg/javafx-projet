@@ -45,7 +45,7 @@
             <String fx:value="txt" />
             <String fx:value="but" />
          </styleClass></Button>
-      <TextField fx:id="enter_name" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+      <TextField fx:id="enter_name" onKeyTyped="#updateName" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txt" text="Entrez votre nom ci-contre : " wrappingWidth="205.240234375" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc11f" height="55.0" stroke="BLACK" strokeType="INSIDE" width="566.0" GridPane.columnSpan="5" GridPane.halignment="CENTER" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jeu du pendu" textAlignment="CENTER" wrappingWidth="551.13671875" GridPane.columnSpan="5" GridPane.halignment="CENTER">

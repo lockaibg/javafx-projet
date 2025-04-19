@@ -13,7 +13,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -24,11 +23,13 @@ public class OutilsController {
 	private boolean sombre;
 	private double size;
 	private GridPane root;
+	private String name;
 	
-	public void initStyles(boolean sombre, double size, GridPane root) {
+	public void initStyles(boolean sombre, double size, GridPane root, String name) {
 		this.sombre = sombre;
 		this.size = size;
 		this.root = root;
+		this.name = name;
 	}
 	public void updateStyleClass(Parent root, String cssClass, double size) {
 	    for (Node node : root.lookupAll(cssClass)) {
@@ -65,7 +66,7 @@ public class OutilsController {
 			loader.setController(monControleur);
 			Parent root = loader.load();
 			Scene scene = new Scene(root,600,400);
-			scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			currentStage.setScene(scene);
 		} catch(Exception e) {
@@ -100,15 +101,17 @@ public class OutilsController {
         			FXMLLoader loader2;
         			if(result.getKey()) {
         				loader2 = new FXMLLoader(getClass().getResource("jeu_sombre.fxml"));
+        				this.sombre = true;
         			}
         			else {
         				loader2 = new FXMLLoader(getClass().getResource("jeu.fxml"));
+        				this.sombre = false;
         			}
-        			jeuControler monControleur = new jeuControler(this.size, this.sombre);
+        			jeuControler monControleur = new jeuControler(this.size, this.sombre, this.name);
         			loader2.setController(monControleur);
         			Parent root = loader2.load();
         			Scene scene = new Scene(root,600,400);
-        			scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         			currentStage.setScene(scene);
         		} catch(Exception e) {
