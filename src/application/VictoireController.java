@@ -29,6 +29,7 @@ public class VictoireController {
 	private boolean sombre;
 	private double size;
 	private String name;
+	private String message;
 	
 	
 	public void updateStyleClass(Parent root, String cssClass, double size) {
@@ -55,10 +56,11 @@ public class VictoireController {
 		}
 	}
 	
-	public VictoireController(boolean sombre, double size, String name){
+	public VictoireController(boolean sombre, double size, String name, String message){
 		this.sombre = sombre;
 		this.size = size;
 		this.name = name;
+		this.message = message;
 	}
 	
 	
@@ -71,7 +73,7 @@ public class VictoireController {
         outilsContainer.getChildren().add(includedRoot);
         if(this.name != null) {
         	Text gg = new Text();
-        	gg.setText("bien joué " + this.name + "!");
+        	gg.setText(message);
         	gg.getStyleClass().add("txt");
         	center.getChildren().add(gg);
         }

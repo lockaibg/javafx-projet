@@ -147,9 +147,11 @@ public class jeuControler {
 	}
 	
 	public void verifierVictoireDefaite() throws IOException {
+		String message;
 		if(jeu.getNbLettresTrouvees() == jeu.getMotMystere().length()) {
 			FXMLLoader victoire = new FXMLLoader(getClass().getResource("victoire.fxml"));
-			VictoireController monControleur = new VictoireController(this.sombre, this.size, this.name);
+			message = "Félicitations " + name;
+			VictoireController monControleur = new VictoireController(this.sombre, this.size, this.name, message);
 			victoire.setController(monControleur);
 			Parent newRoot = victoire.load();
 			Scene scene = new Scene(newRoot,600,400);
@@ -159,7 +161,8 @@ public class jeuControler {
 		}
 		else if(jeu.getNbErreurs() == jeu.getNbMaxErreurs()) {
 			FXMLLoader victoire = new FXMLLoader(getClass().getResource("defaite.fxml"));
-			VictoireController monControleur = new VictoireController(this.sombre, this.size, this.name);
+			message = "Dommage " + name;
+			VictoireController monControleur = new VictoireController(this.sombre, this.size, this.name, message);
 			victoire.setController(monControleur);
 			Parent newRoot = victoire.load();
 			Scene scene = new Scene(newRoot,600,400);
