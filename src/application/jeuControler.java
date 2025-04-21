@@ -27,6 +27,8 @@ public class jeuControler {
 	private OutilsController outilsController;
 	private GestionJeu jeu;
 	private String name;
+	private char lettre;
+	private Vector<Text> lettresAffichees = new Vector<>();
 	
 	@FXML
 	private GridPane root;
@@ -70,19 +72,32 @@ public class jeuControler {
 	@FXML
 	public void initialize() throws IOException {
 		updateStyleClass(root, ".txt", size);
+		root.setOnKeyPressed(event -> {
+		        char letter = Character.toLowerCase(event.getText().charAt(0));
+		        if (Character.isLetter(letter)) {
+		        	try {
+						traiterLettre(letter);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        }
+		    });
+
+		root.requestFocus();  
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("outils.fxml"));
         Parent includedRoot = loader.load();
         outilsController = loader.getController();
 		outilsController.initStyles(sombre, size, root, this.name);
         outilsContainer.getChildren().add(includedRoot);
         System.out.println(jeu.getMotMystere());
-        for(int i = 0; i < jeu.getMotMystere().length(); i++) {
-			Text lettre = new Text();
-			lettre.setText("_");
-			lettre.setFont(new Font(size*3));
-			lettre.getStyleClass().add("lettres");
-			motContainer.getChildren().add(lettre);
-		}
+        for (int i = 0; i < jeu.getMotMystere().length(); i++) {
+            Text lettre = new Text("_");
+            lettre.setFont(new Font(size * 3));
+            lettre.getStyleClass().add("lettres");
+            lettresAffichees.add(lettre);
+            motContainer.getChildren().add(lettre);
+        }	
         p1.setVisible(false);
         p2.setVisible(false);
         p3.setVisible(false);
@@ -95,57 +110,67 @@ public class jeuControler {
 	
 	@FXML
 	public void lettre(ActionEvent event) throws IOException {
-		Button source = (Button) event.getSource();
-		char letter = (source).getText().charAt(0);
-		letter = Character.toLowerCase(letter);
-		jeu.MemoriserLettreChoisie(letter);
-		Vector<Integer> positions = new Vector<Integer>();
-		int nbPlace = jeu.ChercherLettreDansMot(letter, positions);
-		if(nbPlace == 0) {
-			source.setOnAction(null);
-			jeu.setNbErreurs(jeu.getNbErreurs()+1);
-			String ancien = source.getStyle();
-			source.setStyle(ancien +"; -fx-background-color: #C22020;");
-			switch (jeu.getNbErreurs()) {
-				case 1:
-					p1.setVisible(true);
-					break;
-				case 2:
-					p2.setVisible(true);
-					break;
-				case 3:
-					p3.setVisible(true);
-					break;
-				case 4:
-					p4.setVisible(true);
-					break;
-				case 5:
-					p5.setVisible(true);
-					break;
-				case 6:
-					p6.setVisible(true);
-					break;
-				case 7:
-					p7.setVisible(true);
-					break;
-				case 8:
-					p8.setVisible(true);
-					break;
-			}
-		}
-		else {
-			source.setOnAction(null);
-			String ancien = source.getStyle();
-			source.setStyle(ancien +"; -fx-background-color: #2CE312;");
-			for(int i = 0; i < positions.size(); i++) {
-				
-				Text modif = (Text) motContainer.getChildren().get(positions.get(i)+1);
-				modif.setText(String.valueOf(letter));
-			}
-		}
-		verifierVictoireDefaite();
+		Button source = (Button) event.getSource();  
+	    char letter = (source).getText().charAt(0);
+	    letter = Character.toLowerCase(letter);
+	    traiterLettre(letter);
 	}
 	
+	public void traiterLettre(char lettre) throws IOException {
+		jeu.MemoriserLettreChoisie(lettre);
+		Vector<Integer> positions = new Vector<>();
+		int nbPlace = jeu.ChercherLettreDansMot(lettre, positions);
+		Button bouton = getButtonByLetter(lettre);
+		if (bouton != null) {
+		    if (nbPlace == 0) {
+		        bouton.setStyle("-fx-background-color: #C22020;");
+		    } else {
+		        bouton.setStyle("-fx-background-color: #2CE312;");
+		    }
+		}
+		
+		if (nbPlace == 0) {
+			jeu.setNbErreurs(jeu.getNbErreurs() + 1);
+		    afficherPendu();
+		    } else {
+		    	for (int i = 0; i < positions.size(); i++) {
+		    		Text modif = lettresAffichees.get(positions.get(i));
+		    		modif.setText(String.valueOf(lettre));
+		        }
+		    }
+		    verifierVictoireDefaite();
+		    }
+	
+	private void afficherPendu() {
+	    switch (jeu.getNbErreurs()) {
+	        case 1: p1.setVisible(true); break;
+	        case 2: p2.setVisible(true); break;
+	        case 3: p3.setVisible(true); break;
+	        case 4: p4.setVisible(true); break;
+	        case 5: p5.setVisible(true); break;
+	        case 6: p6.setVisible(true); break;
+	        case 7: p7.setVisible(true); break;
+	        case 8: p8.setVisible(true); break;
+	    }
+	}
+	private Button getButtonByLetter(char letter) {
+	    return findButtonRecursive(root, letter);
+	}
+
+	private Button findButtonRecursive(Parent parent, char letter) {
+	    for (Node node : parent.getChildrenUnmodifiable()) {
+	        if (node instanceof Button btn) {
+	            if (btn.getText() != null && btn.getText().length() > 0 &&
+	                Character.toLowerCase(btn.getText().charAt(0)) == letter) {
+	                return btn;
+	            }
+	        } else if (node instanceof Parent child) {
+	            Button found = findButtonRecursive(child, letter);
+	            if (found != null) return found;
+	        }
+	    }
+	    return null;
+	}
 	public void verifierVictoireDefaite() throws IOException {
 		String message;
 		if(jeu.getNbLettresTrouvees() == jeu.getMotMystere().length()) {
