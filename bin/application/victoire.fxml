@@ -105,9 +105,9 @@
          </children>
       </VBox>
       <HBox fx:id="outilsContainer" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" />
-      <HBox fx:id="center" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <HBox fx:id="center" alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <children>
-            <ImageView fitHeight="166.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="145.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/victoire.png" />
                </image>

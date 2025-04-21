@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -32,7 +34,22 @@ public class jeuControler {
 	private HBox outilsContainer;
 	@FXML
 	private HBox motContainer;
-	
+	@FXML
+	private Line p1;
+	@FXML
+	private Line p2;
+	@FXML
+	private Line p3;
+	@FXML
+	private Ellipse p4;
+	@FXML
+	private Line p5;
+	@FXML
+	private Line p6;
+	@FXML
+	private Line p7;
+	@FXML
+	private Line p8;
 	
 	jeuControler(double size, boolean sombre, String name) throws IOException{
 		this.size = size;
@@ -66,6 +83,14 @@ public class jeuControler {
 			lettre.getStyleClass().add("lettres");
 			motContainer.getChildren().add(lettre);
 		}
+        p1.setVisible(false);
+        p2.setVisible(false);
+        p3.setVisible(false);
+        p4.setVisible(false);
+        p5.setVisible(false);
+        p6.setVisible(false);
+        p7.setVisible(false);
+        p8.setVisible(false);
 	}
 	
 	@FXML
@@ -81,6 +106,32 @@ public class jeuControler {
 			jeu.setNbErreurs(jeu.getNbErreurs()+1);
 			String ancien = source.getStyle();
 			source.setStyle(ancien +"; -fx-background-color: #C22020;");
+			switch (jeu.getNbErreurs()) {
+				case 1:
+					p1.setVisible(true);
+					break;
+				case 2:
+					p2.setVisible(true);
+					break;
+				case 3:
+					p3.setVisible(true);
+					break;
+				case 4:
+					p4.setVisible(true);
+					break;
+				case 5:
+					p5.setVisible(true);
+					break;
+				case 6:
+					p6.setVisible(true);
+					break;
+				case 7:
+					p7.setVisible(true);
+					break;
+				case 8:
+					p8.setVisible(true);
+					break;
+			}
 		}
 		else {
 			source.setOnAction(null);
@@ -88,7 +139,7 @@ public class jeuControler {
 			source.setStyle(ancien +"; -fx-background-color: #2CE312;");
 			for(int i = 0; i < positions.size(); i++) {
 				
-				Text modif = (Text) motContainer.getChildren().get(positions.get(i));
+				Text modif = (Text) motContainer.getChildren().get(positions.get(i)+1);
 				modif.setText(String.valueOf(letter));
 			}
 		}
