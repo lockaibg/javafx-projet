@@ -29,6 +29,7 @@ public class jeuControler {
 	private String name;
 	private char lettre;
 	private Vector<Text> lettresAffichees = new Vector<>();
+	private Vector<Character> lettresUtilisees = new Vector<>();
 	
 	@FXML
 	private GridPane root;
@@ -117,6 +118,10 @@ public class jeuControler {
 	}
 	
 	public void traiterLettre(char lettre) throws IOException {
+		if (lettresUtilisees.contains(lettre)) {
+		    return;
+		}
+		lettresUtilisees.add(lettre);
 		jeu.MemoriserLettreChoisie(lettre);
 		Vector<Integer> positions = new Vector<>();
 		int nbPlace = jeu.ChercherLettreDansMot(lettre, positions);
